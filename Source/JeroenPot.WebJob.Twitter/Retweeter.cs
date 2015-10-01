@@ -25,13 +25,16 @@ namespace JeroenPot.WebJob.Twitter
 
         public async void RetweetAndWin()
         {
+            int batchsize = 10;
+
             while (true)
             {
                 LastTweet lastRetweet = _tableStorageRepository.GetLastTweet();
                 _twitterRepository.Authenticate();
-                IList<ITweet> tweets = _twitterRepository.Search("rt win", lastRetweet.LastTweetId);
+                IList<ITweet> tweets = _twitterRepository.Search("rt win", lastRetweet.LastTweetId, batchsize);
 
                 Console.WriteLine("Found {0} tweets", tweets.Count());
+
                 if (tweets.Any())
                 {
                     foreach (var tweet in tweets)
@@ -48,7 +51,7 @@ namespace JeroenPot.WebJob.Twitter
                     await _tableStorageRepository.Save(lastRetweet);
                 }
 
-                if (tweets.Count() < 100)
+                if (tweets.Count() < batchsize)
                 {
                     break;
                 }
