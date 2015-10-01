@@ -6,5 +6,7 @@ namespace JeroenPot.Common
     {
         string GetAppSetting(string name);
         ConnectionStringSettings GetConnectionString(string name);
+
+        string GetAzureWebJobsStorageConnection();
     }
 }
