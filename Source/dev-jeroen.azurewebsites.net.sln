@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E923B98F-8ED2-4384-A5E1-217810C8CD02}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JeroenPot.Website", "JeroenPot.WebSite\JeroenPot.Website.csproj", "{1983D1A9-1DBE-41A5-A09E-764B767C071C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JeroenPot.WebJob", "JeroenPot.WebJob\JeroenPot.WebJob.csproj", "{55970867-D146-4F67-BCEE-116913AD9B24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JeroenPot.Common", "JeroenPot.Common\JeroenPot.Common.csproj", "{379A4112-011B-42B7-9DDA-AD48659C9C95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JeroenPot.WebJob.Twitter", "JeroenPot.WebJob.Twitter\JeroenPot.WebJob.Twitter.csproj", "{305FEF29-D230-4D88-AB43-9BDCD6886CEE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1983D1A9-1DBE-41A5-A09E-764B767C071C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1983D1A9-1DBE-41A5-A09E-764B767C071C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1983D1A9-1DBE-41A5-A09E-764B767C071C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1983D1A9-1DBE-41A5-A09E-764B767C071C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55970867-D146-4F67-BCEE-116913AD9B24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55970867-D146-4F67-BCEE-116913AD9B24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55970867-D146-4F67-BCEE-116913AD9B24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55970867-D146-4F67-BCEE-116913AD9B24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{379A4112-011B-42B7-9DDA-AD48659C9C95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{379A4112-011B-42B7-9DDA-AD48659C9C95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{379A4112-011B-42B7-9DDA-AD48659C9C95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{379A4112-011B-42B7-9DDA-AD48659C9C95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{305FEF29-D230-4D88-AB43-9BDCD6886CEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{305FEF29-D230-4D88-AB43-9BDCD6886CEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{305FEF29-D230-4D88-AB43-9BDCD6886CEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{305FEF29-D230-4D88-AB43-9BDCD6886CEE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
