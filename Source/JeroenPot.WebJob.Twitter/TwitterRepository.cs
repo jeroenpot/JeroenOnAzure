@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Text;
-using System.Threading.Tasks;
 using JeroenPot.Common;
 using Tweetinvi;
 using Tweetinvi.Core.Enum;
@@ -33,14 +30,14 @@ namespace JeroenPot.WebJob.Twitter
             Auth.InitializeApplicationOnlyCredentials();
         }
 
-        public IList<ITweet> Search(string query, long sinceId)
+        public IList<ITweet> Search(string query, long sinceId, int maximumNumberOfResults)
         {
             TweetSearchParameters parameters = new TweetSearchParameters(query);//"(rt AND win)");
             parameters.TweetSearchType = TweetSearchType.OriginalTweetsOnly;
-            parameters.SearchType = SearchResultType.Recent;
+            parameters.SearchType = SearchResultType.Mixed;
             parameters.SinceId = sinceId;
             parameters.Lang = Language.Dutch;
-            parameters.MaximumNumberOfResults = 100;
+            parameters.MaximumNumberOfResults = maximumNumberOfResults;
             IEnumerable<ITweet> tweets = Tweetinvi.Search.SearchTweets(parameters);
 
             tweets = tweets.Where(tweet => tweet.Text.StartsWith("RT ", StringComparison.OrdinalIgnoreCase) == false);

@@ -19,7 +19,6 @@ namespace JeroenPot.WebJob
             {
                 try
                 {
-                    Console.WriteLine("Test changes...");
                     IRetweeter retweeter = new Retweeter(new TableStorageRepository(new ConfigurationRepository()), new TwitterRepository(new ConfigurationRepository()));
                     retweeter.RetweetAndWin();
                     new WebsiteRepository().MakeRequest(new Uri("http://jeroenonazure.azurewebsites.net/"));
