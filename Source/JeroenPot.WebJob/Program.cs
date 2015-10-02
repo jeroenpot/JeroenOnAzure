@@ -7,7 +7,7 @@ namespace JeroenPot.WebJob
         static void Main(string[] args)
         {
             JobHost host = new JobHost();
-            host.Call(typeof(Functions).GetMethod("ProcessMethod"));
+            host.CallAsync(typeof(Functions).GetMethod("ProcessMethod"));
             host.RunAndBlock();
         }
     }
