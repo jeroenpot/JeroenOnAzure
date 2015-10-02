@@ -10,19 +10,19 @@ namespace JeroenPot.WebJob
 {
     public class WebsiteRepository
     {
-        public void MakeRequest(Uri url)
+        public async Task MakeRequest(Uri url)
         {
             HttpWebRequest web = (HttpWebRequest)WebRequest.Create(url);
             web.Method = "GET";
             CookieContainer cookieJar = new CookieContainer();
             web.CookieContainer = cookieJar;
-            using (WebResponse resp = web.GetResponse())
+            using (WebResponse resp = await web.GetResponseAsync())
             {
                 using (Stream istrm = resp.GetResponseStream())
                 {
                     using (StreamReader sr = new StreamReader(istrm))
                     {
-                        sr.ReadToEnd();
+                        await sr.ReadToEndAsync();
                         sr.Close();
                         resp.Close();
                     }

@@ -13,7 +13,7 @@ namespace JeroenPot.WebJob
     public class Functions
     {
         [NoAutomaticTrigger]
-        public static void ProcessMethod(TextWriter log)
+        public static async Task ProcessMethod(TextWriter log)
         {
             while (true)
             {
@@ -21,14 +21,14 @@ namespace JeroenPot.WebJob
                 {
                     IRetweeter retweeter = new Retweeter(new TableStorageRepository(new ConfigurationRepository()), new TwitterRepository(new ConfigurationRepository()));
                     retweeter.RetweetAndWin();
-                    new WebsiteRepository().MakeRequest(new Uri("http://jeroenonazure.azurewebsites.net/"));
+                    await new WebsiteRepository().MakeRequest(new Uri("http://jeroenonazure.azurewebsites.net/"));
                 }
                 catch (Exception ex)
                 {
                     log.WriteLine("Error occurred {0}", ex);
                 }
 
-                Thread.Sleep(TimeSpan.FromMinutes(10));
+                await Task.Delay(TimeSpan.FromMinutes(10));
             }
         }
     }
