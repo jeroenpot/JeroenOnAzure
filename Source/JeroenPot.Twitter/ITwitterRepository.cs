@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Tweetinvi.Core.Interfaces;
 
-namespace JeroenPot.WebJob.Twitter
+namespace JeroenPot.Twitter
 {
     public interface ITwitterRepository
     {

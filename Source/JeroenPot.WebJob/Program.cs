@@ -1,4 +1,5 @@
-﻿using Microsoft.Azure.WebJobs;
+﻿using System;
+using Microsoft.Azure.WebJobs;
 
 namespace JeroenPot.WebJob
 {
@@ -7,7 +8,8 @@ namespace JeroenPot.WebJob
         static void Main(string[] args)
         {
             JobHost host = new JobHost();
-            host.Call(typeof(Functions).GetMethod("ProcessMethod"));
+            Console.WriteLine("Starting method..");
+            host.CallAsync(typeof(Functions).GetMethod("ProcessMethod"));
             host.RunAndBlock();
         }
     }

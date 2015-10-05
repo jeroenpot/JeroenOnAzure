@@ -1,6 +1,6 @@
 ﻿using Microsoft.WindowsAzure.Storage.Table;
 
-namespace JeroenPot.WebJob.Twitter
+namespace JeroenPot.Twitter
 {
     public class LastTweet : TableEntity
     {

@@ -1,6 +1,4 @@
-﻿using System.Configuration;
-using System.Web.Mvc;
-using JeroenPot.Common;
+﻿using System.Web.Mvc;
 
 namespace JeroenPot.Website.Controllers
 {

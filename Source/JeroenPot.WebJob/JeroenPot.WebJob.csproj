@@ -135,9 +135,9 @@
       <Project>{379A4112-011B-42B7-9DDA-AD48659C9C95}</Project>
       <Name>JeroenPot.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JeroenPot.WebJob.Twitter\JeroenPot.WebJob.Twitter.csproj">
+    <ProjectReference Include="..\JeroenPot.WebJob.Twitter\JeroenPot.Twitter.csproj">
       <Project>{305FEF29-D230-4D88-AB43-9BDCD6886CEE}</Project>
-      <Name>JeroenPot.WebJob.Twitter</Name>
+      <Name>JeroenPot.Twitter</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
