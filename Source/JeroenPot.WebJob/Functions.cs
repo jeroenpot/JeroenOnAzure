@@ -4,7 +4,7 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using JeroenPot.Common;
-using JeroenPot.WebJob.Twitter;
+using JeroenPot.Twitter;
 using Microsoft.Azure;
 using Microsoft.Azure.WebJobs;
 
@@ -20,7 +20,7 @@ namespace JeroenPot.WebJob
                 try
                 {
                     IRetweeter retweeter = new Retweeter(new TableStorageRepository(new ConfigurationRepository()), new TwitterRepository(new ConfigurationRepository()));
-                    retweeter.RetweetAndWin();
+                    await retweeter.RetweetAndWin();
                     await new WebsiteRepository().MakeRequest(new Uri("http://jeroenonazure.azurewebsites.net/"));
                 }
                 catch (Exception ex)

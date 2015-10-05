@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using JeroenPot.Common;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 
-namespace JeroenPot.WebJob.Twitter
+namespace JeroenPot.Twitter
 {
     public class TableStorageRepository : ITableStorageRepository
     {

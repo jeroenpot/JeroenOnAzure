@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Tweetinvi.Core.Interfaces;
 
-namespace JeroenPot.WebJob.Twitter
+namespace JeroenPot.Twitter
 {
     public interface IRetweeter
     {
-        void RetweetAndWin();
+        Task<long> RetweetAndWin();
     }
 
     public class Retweeter : IRetweeter
@@ -23,13 +22,14 @@ namespace JeroenPot.WebJob.Twitter
             _twitterRepository = twitterRepository;
         }
 
-        public async void RetweetAndWin()
+        public async Task<long> RetweetAndWin()
         {
             int batchsize = 10;
 
+            LastTweet lastRetweet;
             while (true)
             {
-                LastTweet lastRetweet = _tableStorageRepository.GetLastTweet();
+                lastRetweet = _tableStorageRepository.GetLastTweet();
                 _twitterRepository.Authenticate();
                 IList<ITweet> tweets = _twitterRepository.Search("rt win", lastRetweet.LastTweetId, batchsize);
 
@@ -56,6 +56,8 @@ namespace JeroenPot.WebJob.Twitter
                     break;
                 }
             }
+
+            return lastRetweet.LastTweetId;
         }
     }
 }

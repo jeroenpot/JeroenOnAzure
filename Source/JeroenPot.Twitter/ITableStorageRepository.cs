@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace JeroenPot.WebJob.Twitter
+namespace JeroenPot.Twitter
 {
     public interface ITableStorageRepository
     {

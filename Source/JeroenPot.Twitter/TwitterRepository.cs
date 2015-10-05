@@ -8,7 +8,7 @@ using Tweetinvi.Core.Interfaces;
 using Tweetinvi.Core.Interfaces.Parameters;
 using Tweetinvi.Core.Parameters;
 
-namespace JeroenPot.WebJob.Twitter
+namespace JeroenPot.Twitter
 {
     public class TwitterRepository: ITwitterRepository
     {
@@ -32,7 +32,7 @@ namespace JeroenPot.WebJob.Twitter
 
         public IList<ITweet> Search(string query, long sinceId, int maximumNumberOfResults)
         {
-            TweetSearchParameters parameters = new TweetSearchParameters(query);//"(rt AND win)");
+            TweetSearchParameters parameters = new TweetSearchParameters(query);
             parameters.TweetSearchType = TweetSearchType.OriginalTweetsOnly;
             parameters.SearchType = SearchResultType.Mixed;
             parameters.SinceId = sinceId;

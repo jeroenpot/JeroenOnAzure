@@ -7,8 +7,8 @@
     <ProjectGuid>{305FEF29-D230-4D88-AB43-9BDCD6886CEE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JeroenPot.WebJob.Twitter</RootNamespace>
-    <AssemblyName>JeroenPot.WebJob.Twitter</AssemblyName>
+    <RootNamespace>JeroenPot.Twitter</RootNamespace>
+    <AssemblyName>JeroenPot.Twitter</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
@@ -34,6 +34,10 @@
   <ItemGroup>
     <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JeroenPot.SimpleInjector.AssemblyScanner, Version=1.1.0.47, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JeroenPot.SimpleInjector.AssemblyScanner.1.1.0.47\lib\net45\JeroenPot.SimpleInjector.AssemblyScanner.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -70,6 +74,10 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SimpleInjector, Version=3.0.6.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleInjector.3.0.6\lib\net45\SimpleInjector.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -133,6 +141,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\SimpleInjectorBootstrapper.cs" />
     <Compile Include="ITableStorageRepository.cs" />
     <Compile Include="ITwitterRepository.cs" />
     <Compile Include="Retweeter.cs" />
