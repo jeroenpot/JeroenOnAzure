@@ -40,7 +40,7 @@ namespace JeroenPot.Twitter
             parameters.MaximumNumberOfResults = maximumNumberOfResults;
             IEnumerable<ITweet> tweets = Tweetinvi.Search.SearchTweets(parameters);
 
-            tweets = tweets.Where(tweet => tweet.Text.StartsWith("RT ", StringComparison.OrdinalIgnoreCase) == false);
+            tweets = tweets.Where(tweet => tweet.Text.IndexOf(": RT", StringComparison.OrdinalIgnoreCase) > -1 == false);
 
             return tweets.Where(tweet => IgnoredUsers.Any(user => tweet.CreatedBy.ScreenName.Equals(user, StringComparison.OrdinalIgnoreCase)) == false).ToList();
         }
