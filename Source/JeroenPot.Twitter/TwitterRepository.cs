@@ -10,7 +10,7 @@ using Tweetinvi.Core.Parameters;
 
 namespace JeroenPot.Twitter
 {
-    public class TwitterRepository: ITwitterRepository
+    public class TwitterRepository : ITwitterRepository
     {
         private readonly IConfigurationRepository _configurationRepository;
 
@@ -41,6 +41,7 @@ namespace JeroenPot.Twitter
             IEnumerable<ITweet> tweets = Tweetinvi.Search.SearchTweets(parameters);
 
             tweets = tweets.Where(tweet => tweet.Text.IndexOf(": RT", StringComparison.OrdinalIgnoreCase) > -1 == false);
+            tweets = tweets.Where(tweet => tweet.Text.StartsWith("RT", StringComparison.OrdinalIgnoreCase) == false);
 
             return tweets.Where(tweet => IgnoredUsers.Any(user => tweet.CreatedBy.ScreenName.Equals(user, StringComparison.OrdinalIgnoreCase)) == false).ToList();
         }
@@ -50,7 +51,7 @@ namespace JeroenPot.Twitter
             get
             {
                 string users = _configurationRepository.GetAppSetting("IgnoredUsers") ?? string.Empty;
-                return users.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries).Select(s => s.Trim()).ToList();
+                return users.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(s => s.Trim()).ToList();
             }
         }
 
