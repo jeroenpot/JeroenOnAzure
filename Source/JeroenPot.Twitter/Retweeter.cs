@@ -31,27 +31,24 @@ namespace JeroenPot.Twitter
             {
                 lastRetweet = _tableStorageRepository.GetLastTweet();
                 _twitterRepository.Authenticate();
-                IList<ITweet> tweets = _twitterRepository.Search("rt win", lastRetweet.LastTweetId, batchsize);
+                var container = _twitterRepository.Search("rt win", lastRetweet.LastTweetId, batchsize);
 
-                Console.WriteLine("Found {0} tweets", tweets.Count());
+                Console.WriteLine("Found {0} tweets", container.Tweets.Count());
 
-                if (tweets.Any())
+                foreach (var tweet in container.Tweets)
                 {
-                    foreach (var tweet in tweets)
+                    _twitterRepository.FollowUserIfRequired(tweet);
+                    _twitterRepository.Retweet(tweet);
+
+                    if (tweet.Id > lastRetweet.LastTweetId)
                     {
-                        _twitterRepository.FollowUserIfRequired(tweet);
-                        _twitterRepository.Retweet(tweet);
-
-                        if (tweet.Id > lastRetweet.LastTweetId)
-                        {
-                            lastRetweet.LastTweetId = tweet.Id;
-                        }
+                        lastRetweet.LastTweetId = tweet.Id;
                     }
-
-                    await _tableStorageRepository.Save(lastRetweet);
                 }
 
-                if (tweets.Count() < batchsize)
+                await _tableStorageRepository.Save(lastRetweet);
+
+                if (container.Tweets.Count() < batchsize)
                 {
                     break;
                 }
