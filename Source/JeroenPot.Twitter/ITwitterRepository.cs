@@ -5,7 +5,7 @@ namespace JeroenPot.Twitter
 {
     public interface ITwitterRepository
     {
-        IList<ITweet> Search(string query, long sinceId, int maximumNumberOfResults);
+        TweetContainer Search(string query, long sinceId, int maximumNumberOfResults);
         void FollowUserIfRequired(ITweet tweet);
         void Retweet(ITweet tweet);
         void Authenticate();

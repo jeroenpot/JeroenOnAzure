@@ -30,20 +30,24 @@ namespace JeroenPot.Twitter
             Auth.InitializeApplicationOnlyCredentials();
         }
 
-        public IList<ITweet> Search(string query, long sinceId, int maximumNumberOfResults)
+        public TweetContainer Search(string query, long sinceId, int maximumNumberOfResults)
         {
+            TweetContainer container = new TweetContainer();
             TweetSearchParameters parameters = new TweetSearchParameters(query);
             parameters.TweetSearchType = TweetSearchType.OriginalTweetsOnly;
             parameters.SearchType = SearchResultType.Mixed;
             parameters.SinceId = sinceId;
-            parameters.Lang = Language.Dutch;
             parameters.MaximumNumberOfResults = maximumNumberOfResults;
-            IEnumerable<ITweet> tweets = Tweetinvi.Search.SearchTweets(parameters);
+            container.Tweets = Tweetinvi.Search.SearchTweets(parameters);
+            container.HasNextBatch = maximumNumberOfResults == container.Tweets.Count();
 
-            tweets = tweets.Where(tweet => tweet.Text.IndexOf(": RT", StringComparison.OrdinalIgnoreCase) > -1 == false);
-            tweets = tweets.Where(tweet => tweet.Text.StartsWith("RT", StringComparison.OrdinalIgnoreCase) == false);
+            container.Tweets = container.Tweets.Where(tweet => tweet.Text.IndexOf(": RT", StringComparison.OrdinalIgnoreCase) > -1 == false);
+            container.Tweets = container.Tweets.Where(tweet => tweet.Text.StartsWith("RT", StringComparison.OrdinalIgnoreCase) == false);
+            container.Tweets = container.Tweets.Where(tweet => IgnoredUsers.Any(user => !tweet.CreatedBy.ScreenName.Equals(user, StringComparison.OrdinalIgnoreCase)));
+            container.Tweets = container.Tweets.Where(tweet => IgnoredUsers.Any(user => !tweet.Text.Contains(user)));
+            container.Tweets = container.Tweets.Where(tweet => tweet.Text.Replace(".", "").Replace(" ", "").IndexOf("lastrtwin", StringComparison.OrdinalIgnoreCase) == -1);
 
-            return tweets.Where(tweet => IgnoredUsers.Any(user => tweet.CreatedBy.ScreenName.Equals(user, StringComparison.OrdinalIgnoreCase)) == false).ToList();
+            return container;
         }
 
         public IList<string> IgnoredUsers
@@ -80,5 +84,11 @@ namespace JeroenPot.Twitter
         {
             tweet.PublishRetweet();
         }
+    }
+
+    public class TweetContainer
+    {
+        public bool HasNextBatch { get; set; }
+        public IEnumerable<ITweet> Tweets { get; set; }
     }
 }
